@@ -40,8 +40,10 @@ router.post('/', (req, res) => {
             res.status(500).json({message: "Error adding this task"})
         })
         // {
-        //     "name": "Go buy phone",
-        //     "description": "256G",
+        //     "description": "test",
+        //     "notes": "",
+        //     "completed": false,
+        //     "project_id": 1
         // }
 })
 

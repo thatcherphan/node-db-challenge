@@ -7,7 +7,11 @@ module.exports = {
 }
 
 function getTasks() {
-    return db('tasks')
+    return db('tasks as t')
+        .select('t.id as task_id', 't.description as task_description', 't.notes as task_notes', 't.project_id', 
+            'p.name as project_name', 'p.description as project_description', 't.completed' )
+        .join('projects as p', 't.project_id', 'p.id')
+
 }
 
 function getTaskByID(id) {
@@ -17,7 +21,7 @@ function getTaskByID(id) {
   }
 
 function addTask(task) {
-    return db('resources')
+    return db('tasks')
         .insert(task, 'id')
         .then(([id]) => getTaskByID(id));
 }
